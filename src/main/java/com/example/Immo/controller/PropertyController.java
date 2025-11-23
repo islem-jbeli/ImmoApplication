@@ -51,6 +51,11 @@ public class PropertyController {
         propertyService.deleteProperty(id);
         return ResponseEntity.noContent().build();
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Property> updateProperty(@PathVariable Long id, @RequestBody Property propertyDetails) {
+        Property updatedProperty = propertyService.updateProperty(id, propertyDetails);
+        return ResponseEntity.ok(updatedProperty);
+    }
 
     /**
      * Récupère les biens d'une ville spécifique

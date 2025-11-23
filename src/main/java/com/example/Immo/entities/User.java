@@ -15,19 +15,21 @@ public class User {
     private String email;
     private String motDePasse;
 
-    // Constructeurs
+    // ✅ Ajout du champ rôle (pour gérer les droits d'accès)
+    private String role = "USER"; // valeur par défaut
 
+    // Constructeurs
     public User() {}
 
-    public User(String nom, String prenom, String email, String motDePasse) {
+    public User(String nom, String prenom, String email, String motDePasse, String role) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.motDePasse = motDePasse;
+        this.role = role;
     }
 
     // Getters et Setters
-
     public Long getId() {
         return id;
     }
@@ -66,5 +68,13 @@ public class User {
 
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

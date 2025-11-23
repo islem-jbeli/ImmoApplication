@@ -9,4 +9,6 @@ public interface PropertyService {
     Property getPropertyById(Long id);
     void deleteProperty(Long id);
     List<Property> getPropertiesByCity(String city);
+    Property updateProperty(Long id, Property propertyDetails);
+
 }

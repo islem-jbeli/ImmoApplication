@@ -27,12 +27,28 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     public Property getPropertyById(Long id) {
-        return propRepo.findById(id).orElse(null);
+        return propRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Property with id " + id + " not found"));
     }
 
     @Override
     public void deleteProperty(Long id) {
-        propRepo.deleteById(id);
+        Property property = getPropertyById(id); // vérifie que la propriété existe
+        propRepo.delete(property);
+    }
+
+    @Override
+    public Property updateProperty(Long id, Property propertyDetails) {
+        Property property = getPropertyById(id);
+
+        property.setTitle(propertyDetails.getTitle());
+        property.setDescription(propertyDetails.getDescription());
+        property.setCity(propertyDetails.getCity());
+        property.setPrice(propertyDetails.getPrice());
+        property.setImageUrl(propertyDetails.getImageUrl());
+        property.setOwner(propertyDetails.getOwner());
+
+        return propRepo.save(property);
     }
 
     @Override
